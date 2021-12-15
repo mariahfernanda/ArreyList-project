@@ -1,16 +1,17 @@
 package br.senai.arquivoArrayList;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.FileSystemNotFoundException;
 
-import javax.annotation.processing.FilerException;
+
+
 
 public class Arquivo {
+	
+	DadosContato objDadosContato = new DadosContato();
 
 	// CRIA E GRAVA OS DADOS NO ARQUIVO
 	public boolean escrever(String caminho, String conteudo) {
@@ -29,7 +30,7 @@ public class Arquivo {
 	}
 
 	// LE DADOS NO ARQUIVO
-	public String ler(String caminho) {
+	public DadosContato ler(String caminho) {
 
 		String conteudo = "";
 
@@ -45,24 +46,30 @@ public class Arquivo {
 			linha = conteudoArquivo.readLine();
 
 			while (linha != null) {
+				Cadastro objContato = new Cadastro();
+				
+				String [] VetLinha = linha.split(";");
+				
+				objContato.setNome(VetLinha[0]);
+				objContato.setEmail(VetLinha[1]);
+				objContato.setTelefone(VetLinha[2]);
+				objContato.setCidade(VetLinha[3]);
+				
+				objDadosContato.cadastrarContato(objContato);
+				
 				conteudo += linha + "\n";
 				linha = conteudoArquivo.readLine();
 			}
 
 			conteudoArquivo.close();
-			return conteudo;
+			return objDadosContato;
 
 		} catch (IOException e) {
 
 			System.out.println("ERRO: " + e.getMessage());
-			return "";
+			return null;
 
-		} catch (FileSystemNotFoundException e) {
-
-			System.out.println("ERRO: " + e.getMessage());
-			return "";
-
-		}
+		} 
 	}
 
 }

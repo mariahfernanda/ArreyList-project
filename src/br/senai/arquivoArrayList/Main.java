@@ -29,15 +29,14 @@ public class Main {
 		 */
 
 		String texto = "";
-		for (Cadastro c : objDadosContato.listarContatos()) {
-			System.out.println("Nome: " + c.getNome() + "   Email: " + c.getEmail() + "   Telefone: " + c.getTelefone()
-					+ "   Cidade: " + c.getCidade());
-
-			texto += c.getNome() + ";" + c.getEmail() + ";" + c.getTelefone() + ";" + c.getCidade() + ";" + "\n";
-
-		}// fim do for
 		
-		//
+		
+		
+//		for (Cadastro c : objDadosContato.listarContatos()) {
+//			System.out.println("Nome: " + c.getNome() + "   Email: " + c.getEmail() + "   Telefone: " + c.getTelefone()
+//					+ "   Cidade: " + c.getCidade());
+//			texto += c.getNome() + ";" + c.getEmail() + ";" + c.getTelefone() + ";" + c.getCidade() + ";" + "\n";
+//		}fim do for
 		objArquivo.escrever(caminho, texto);
 
 	}
